@@ -1,4 +1,4 @@
-public abstract class LightingDevice implements ElectricDevice {
+public abstract class LightingDevice implements ElectricDevice, Comparable<LightingDevice> {
     public static final double MAX_BRIGHTNESS = 1D, MIN_BRIGHTNESS = 0D;
     protected final int power;
     protected double brightness;
@@ -41,5 +41,13 @@ public abstract class LightingDevice implements ElectricDevice {
         setBrightness(changed);
     }
 
-//    public abstract double getEnergyConsumption();
+    @Override
+    public int compareTo(LightingDevice o) {
+        return Integer.compare(power, o.power);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getName() + " with power: " + power;
+    }
 }
